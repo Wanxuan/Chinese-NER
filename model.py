@@ -47,8 +47,8 @@ class Model(object):
         print("==============================",self.char_inputs)
         used = tf.abs(self.char_inputs)
         print("===============================",used)
-        temp = tf.sign(tf.reduce_sum(used, reduction_indices=2))
-        length = tf.reduce_sum(temp, reduction_indices=1)
+        temp = tf.sign(tf.reduce_sum(used, 1))
+        length = tf.reduce_sum(temp, 0)
         self.lengths = tf.cast(length, tf.int32)
         self.batch_size = tf.shape(self.char_inputs)[0]
         self.num_steps = tf.shape(self.char_inputs)[1]

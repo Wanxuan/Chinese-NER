@@ -44,8 +44,9 @@ class Model(object):
         self.dropout = tf.placeholder(dtype=tf.float32,
                                       name="Dropout")
 
+        print("==============================",self.char_inputs)
         used = tf.abs(self.char_inputs)
-        print("===============================",used.shape())
+        print("===============================",used)
         temp = tf.sign(tf.reduce_sum(used, reduction_indices=2))
         length = tf.reduce_sum(temp, reduction_indices=1)
         self.lengths = tf.cast(length, tf.int32)

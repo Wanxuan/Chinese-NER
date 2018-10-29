@@ -51,7 +51,9 @@ class Model(object):
         length = tf.reduce_sum(temp, 0)
         self.lengths = tf.cast(length, tf.int32)
         self.batch_size = tf.shape(self.char_inputs)[0]
+        print(self.batch_size)
         self.num_steps = tf.shape(self.char_inputs)[1]
+        print(self.num_steps)
         self.word_size = 6
 
         # embeddings for chinese character and segmentation representation
@@ -127,6 +129,7 @@ class Model(object):
                     name="char_cnn_W",
                     shape=[1, self.word_size, self.char_dim, self.char_dim],
                     initializer=self.initializer)
+            print(self.char_dim)
             self.b = tf.Variable(tf.constant(0.1, shape=self.char_dim), name="b")
             self.conv = tf.nn.conv2d(
                         dropout_inputs,
